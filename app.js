@@ -50,12 +50,7 @@ const start = async () => {
       `mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URI}/${DATABASE_NAME}?authSource=admin&replicaSet=atlas-wofvy2-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
     );
     // eslint-disable-next-line no-console
-    app.listen(
-      3001,
-      '0.0.0.0',
-      // eslint-disable-next-line no-console
-      console.log(`Server is listening on port ${port}...`)
-    );
+    app.listen(port, console.log(`Server is listening on port ${port}...`));
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
