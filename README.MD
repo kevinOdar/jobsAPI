@@ -18,11 +18,9 @@ npm install && npm start
 
 #### User Model
 
-Email Validation Regex
+Email Validation 
 
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
+I used 
 
 #### Register User
 

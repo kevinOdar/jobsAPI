@@ -3,7 +3,6 @@ require('dotenv').config();
 const { StatusCodes } = require('http-status-codes');
 const { NotFoundError, BadRequestError } = require('../errors');
 const Job = require('../models/Job');
-// const { BadRequestError } = require('../errors');
 
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId;
@@ -47,8 +46,6 @@ const updateJob = async (req, res) => {
 };
 
 const deleteJob = async (req, res) => {
-  // const { id } = req.params;
-  // const job = await Job.findByIdAndRemove(id);
   const {
     params: { id: _id },
     user: { userId },

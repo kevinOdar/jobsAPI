@@ -1,5 +1,4 @@
 const { Schema, model, Types } = require('mongoose');
-// const validator = require('validator');
 
 const JobSchema = new Schema(
   {

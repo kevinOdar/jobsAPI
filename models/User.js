@@ -22,7 +22,6 @@ const UserSchema = new Schema({
   },
   passwordConfirm: {
     type: String,
-    // required: [true, 'Please, confirm the password'],
   },
 });
 

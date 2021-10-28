@@ -1,7 +1,6 @@
 require('express-async-errors');
 require('dotenv').config();
-// const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcryptjs');
+
 const { StatusCodes } = require('http-status-codes');
 const User = require('../models/User');
 const { BadRequestError, UnauthenticatedError } = require('../errors');
@@ -22,8 +21,6 @@ const login = async (req, res) => {
   if (!(await foundUser.comparePassword(password)))
     throw new UnauthenticatedError('Incorrect password');
   const token = await foundUser.createJWT();
-  // req.Headers.token = token;
-  // if (jwt.verify(foundUser.token, process.env.JWT_SECRET));
   res.status(StatusCodes.OK).json({ user: { name: foundUser.name }, token });
 };
 

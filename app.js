@@ -44,7 +44,9 @@ app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(`mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URI}/${DATABASE_NAME}?authSource=admin&replicaSet=atlas-wofvy2-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`);
+    await connectDB(
+      `mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URI}/${DATABASE_NAME}?authSource=admin&replicaSet=atlas-wofvy2-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
+    );
     app.listen(port, console.log(`Server is listening on port ${port}...`));
   } catch (error) {
     // eslint-disable-next-line no-console
