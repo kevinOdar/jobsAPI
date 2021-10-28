@@ -13,7 +13,7 @@ const app = express();
 
 const connectDB = require('./db/connect');
 
-const { MONGO_URI, DB_USER, DB_PASS, DATABASE_NAME, PORT = 3001 } = process.env;
+const { MONGO_URI, PORT = 3001 } = process.env;
 
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
@@ -44,9 +44,7 @@ app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(
-      `mongodb+srv://${DB_USER}:${DB_PASS}@${MONGO_URI}/${DATABASE_NAME}?authSource=admin&replicaSet=atlas-wofvy2-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-    );
+    await connectDB(MONGO_URI);
     // eslint-disable-next-line no-console
     app.listen(PORT, console.log(`Server is listening on port ${PORT}...`));
   } catch (error) {

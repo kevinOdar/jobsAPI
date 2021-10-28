@@ -1,28 +1,76 @@
 #### Setup
 
+First, create a .env file in the root folder with these variables:
+
+```bash
+JWT_SECRET=a string that JWT dependency use to create tokens, I recommend using this URL to create it: https://www.allkeysgenerator.com/
+JWT_LIFETIME=token expired time
+PORT=port
+NODE_ENV=environment name
+MONGO_URI=URI that mongo atlas provided
+
+```
+
+Then
+
 ```bash
 npm install && npm start
 ```
 
-#### Database Connection
+## API (version 1.0)
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
+### Auth
 
-#### Routers
+- POST ​/auth​/register ==> Register User
 
-- auth.js
-- jobs.js
+```bash
+  Example request body: {
+  "name": "bob",
+  "email": "bob@gmail.com",
+  "password": "secret"
+  }
+```
 
-#### User Model
+- POST ​/auth​/login ==> login User
 
-Email Validation 
+```bash
+  Example request body: {
+  "email": "susan@gmail.com",
+  "password": "secret"
+}
+```
 
-I used 
+### Jobs
 
-#### Register User
+Before executing any of these requests, we needed to login or register a user.
+
+- POST ​/jobs
+
+```bash
+  Example request body: {
+  "company": "google",
+  "position": "front-end developer"
+}
+```
+
+- GET ​/jobs
+
+- GET ​/jobs​/{id}
+
+- PATCH ​/jobs​/{id}
+
+```bash
+  Example request body: {
+  "company": "random",
+  "position": "intern"
+}
+```
+
+- DELETE ​/jobs​/{id}
+
+## Functionalities
+
+### Register User
 
 - Validate - name, email, password - with Mongoose
 - Hash Password (with bcryptjs)
@@ -30,7 +78,7 @@ I used
 - Generate Token
 - Send Response with Token
 
-#### Login User
+### Login User
 
 - Validate - email, password - in controller
 - If email or password is missing, throw BadRequestError
@@ -40,28 +88,15 @@ I used
 - If correct, generate Token
 - Send Response with Token
 
-#### Mongoose Errors
+### Mongoose Errors
 
 - Validation Errors
 - Duplicate (Email)
 - Cast Error
 
-#### Security
+### Security
 
 - helmet
 - cors ==> Ensures that our API it's accesible for different domains. If we haven't it, we can't access our API from frontends on differnets domains. Makes it accesible to the public.
 - xss-clean ==> Sanitizes the user input (req.body, req.query, req.params ) as a result, the attackers can inject code on them.
 - express-rate-limit
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
-```
